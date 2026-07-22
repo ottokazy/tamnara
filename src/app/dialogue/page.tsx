@@ -6,8 +6,8 @@ import PageHeader from "@/components/PageHeader";
 import { LibrarianLine } from "@/components/ScriptChat";
 import { UnderlineInput } from "@/components/UnderlineField";
 import { useSession } from "@/lib/session-context";
-import { SPOTS, arrivalOpeningQuestion, forkOptionsForChapter } from "@/lib/mock-data";
-import { fetchDialogueOpen } from "@/lib/librarian-client";
+import { SPOTS, arrivalOpeningQuestion, pickForkOptions } from "@/lib/mock-data";
+import { fetchDialogueOpen, prefetchChapterClose } from "@/lib/librarian-client";
 import { accentVar } from "@/components/accent";
 import type { ChapterLog } from "@/lib/types";
 
@@ -82,7 +82,23 @@ export default function DialoguePage() {
 
     if (session.currentChapterNo < 3) {
       const nextChapterNo = (session.currentChapterNo + 1) as 1 | 2 | 3;
-      const options = forkOptionsForChapter(nextChapterNo - 1, session.path);
+      const options = pickForkOptions(
+        nextChapterNo - 1,
+        session.affinityTags,
+        session.path,
+        session.thread
+      );
+      // forks 페이지가 뜨기 전에 미리 요청을 시작해 체감 대기 시간을 줄인다.
+      prefetchChapterClose(String(chapters.length), {
+        thread: session.thread,
+        spotName: spot.name,
+        question,
+        answer: givenAnswer,
+        forkOptions: options.map((id) => {
+          const s = SPOTS[id];
+          return { spotId: id, name: s.name, reading: s.reading, voice: s.voice };
+        }),
+      });
       update({
         chapters,
         currentChapterNo: nextChapterNo,

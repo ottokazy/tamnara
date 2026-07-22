@@ -8,7 +8,15 @@ import { PillSelect } from "@/components/PillSelect";
 import { UnderlineTextarea } from "@/components/UnderlineField";
 import OutlineButton from "@/components/OutlineButton";
 import { useSession } from "@/lib/session-context";
-import { AGE_BANDS, GENDERS, BOARDS, generateThread, generateFirstQuestion } from "@/lib/mock-data";
+import {
+  AGE_BANDS,
+  GENDERS,
+  BOARDS,
+  generateThread,
+  generateFirstQuestion,
+  generateAffinityTags,
+} from "@/lib/mock-data";
+import type { AffinityTag } from "@/lib/types";
 import { fetchThread, splitDataUrl } from "@/lib/librarian-client";
 import { accentVar } from "@/components/accent";
 
@@ -30,6 +38,7 @@ export default function StartPage() {
     setLoading(true);
     const image = splitDataUrl(boardPhoto);
     let thread: string;
+    let affinityTags: AffinityTag[];
     let firstQuestion: string;
     try {
       const result = await fetchThread({
@@ -41,10 +50,12 @@ export default function StartPage() {
         gender,
       });
       thread = result.thread;
+      affinityTags = result.affinityTags;
       firstQuestion = result.firstQuestion;
     } catch {
       // 길벗이 잠시 자리를 비웠다면, 미리 적어둔 말들로 이어간다.
       thread = generateThread(introText, boardPhrase);
+      affinityTags = generateAffinityTags(introText, boardPhrase);
       firstQuestion = generateFirstQuestion(thread);
     }
     update({
@@ -53,6 +64,7 @@ export default function StartPage() {
       profile: { ageBand, gender },
       introText,
       thread,
+      affinityTags,
       firstQuestion,
     });
     router.push("/question");

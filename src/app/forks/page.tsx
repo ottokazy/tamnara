@@ -7,7 +7,7 @@ import ForkCard from "@/components/ForkCard";
 import BookSpineProgress from "@/components/BookSpineProgress";
 import { useSession } from "@/lib/session-context";
 import { SPOTS } from "@/lib/mock-data";
-import { fetchChapterClose } from "@/lib/librarian-client";
+import { fetchChapterClose, peekChapterClosePrefetch } from "@/lib/librarian-client";
 import type { SpotId } from "@/lib/types";
 import { accentVar } from "@/components/accent";
 
@@ -41,16 +41,20 @@ export default function ForksPage() {
     setAcknowledgment(null);
     setForkReasons({});
     let cancelled = false;
-    fetchChapterClose({
-      thread: session.thread,
-      spotName: lastSpotName,
-      question,
-      answer,
-      forkOptions: session.activeForkOptions.map((id) => {
-        const spot = SPOTS[id];
-        return { spotId: id, name: spot.name, reading: spot.reading, voice: spot.voice };
-      }),
-    })
+    const key = String(session.chapters.length);
+    const request =
+      peekChapterClosePrefetch(key) ??
+      fetchChapterClose({
+        thread: session.thread,
+        spotName: lastSpotName,
+        question,
+        answer,
+        forkOptions: session.activeForkOptions.map((id) => {
+          const spot = SPOTS[id];
+          return { spotId: id, name: spot.name, reading: spot.reading, voice: spot.voice };
+        }),
+      });
+    request
       .then((result) => {
         if (cancelled) return;
         setAcknowledgment(result.acknowledgment);
@@ -93,9 +97,14 @@ export default function ForksPage() {
         <span className="type-subtitle-en mb-2 block" style={{ color: lastAccent }}>
           길벗
         </span>
-        <h2 className="type-question mb-10 text-ink">
-          {acknowledgment ?? " "}
-        </h2>
+        {acknowledgment ? (
+          <h2 className="type-question mb-10 text-ink">{acknowledgment}</h2>
+        ) : (
+          <div className="mb-10 flex flex-col gap-3" aria-hidden>
+            <div className="h-[22px] w-full animate-pulse rounded-sm bg-ink/10" />
+            <div className="h-[22px] w-2/3 animate-pulse rounded-sm bg-ink/10" />
+          </div>
+        )}
 
         <div className="flex flex-col gap-4">
           {session.activeForkOptions.map((id) => (

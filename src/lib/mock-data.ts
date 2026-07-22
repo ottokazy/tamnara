@@ -1,4 +1,4 @@
-import type { Board, Spot, SpotId } from "./types";
+import { AFFINITY_TAGS, type AffinityTag, type Board, type Spot, type SpotId } from "./types";
 
 export const SPOTS: Record<SpotId, Spot> = {
   mirroreum: {
@@ -14,6 +14,8 @@ export const SPOTS: Record<SpotId, Spot> = {
     forkReason: "자신을 무한히 비추어 볼 준비가 되었다면, 이 길로.",
     transitAction: "걷는 동안, 자신의 그림자를 한 번 밟아볼까요?",
     transitThought: "나는 지금 누구의 얼굴로 걷고 있나",
+    fits: ["자기응시", "변형과성장"],
+    stage: 1,
   },
   cheonhyangrang: {
     id: "cheonhyangrang",
@@ -28,6 +30,8 @@ export const SPOTS: Record<SpotId, Spot> = {
     forkReason: "들리지 않는 소리에 귀 기울이고 싶다면, 이 길로.",
     transitAction: "걷는 동안 스쳐가는 소리들 중, 가장 작은 소리는 어디에 있을까요?",
     transitThought: "나는 무엇이 들리기를 기다리고 있었나",
+    fits: ["감각과소리", "비움과여백"],
+    stage: 1,
   },
   lighthouse: {
     id: "lighthouse",
@@ -42,6 +46,8 @@ export const SPOTS: Record<SpotId, Spot> = {
     forkReason: "아직 오지 않은 것을 상상하고 싶다면, 이 길로.",
     transitAction: "걷는 동안 고개를 들면, 하늘은 몇 가지 색으로 나뉘어 있을까요?",
     transitThought: "내가 기다리는 빛은 어디서 오는가",
+    fits: ["상상과기대", "시간과속도"],
+    stage: 1,
   },
   mother: {
     id: "mother",
@@ -56,6 +62,8 @@ export const SPOTS: Record<SpotId, Spot> = {
     forkReason: "오래된 기억을 마주할 준비가 되었다면, 이 길로.",
     transitAction: "걷는 동안, 어린 시절 걸음의 속도로 열 걸음만 걸어볼까요?",
     transitThought: "내가 두고 온 것은 무엇이었을까",
+    fits: ["기억과그리움", "자기응시"],
+    stage: 2,
   },
   artmuseum: {
     id: "artmuseum",
@@ -70,6 +78,8 @@ export const SPOTS: Record<SpotId, Spot> = {
     forkReason: "채우기보다 비우고 싶다면, 이 길로.",
     transitAction: "걷는 동안, 손에 쥔 것 없이 두 손을 그냥 늘어뜨려볼까요?",
     transitThought: "나는 무엇을 자꾸 채우려 하는가",
+    fits: ["비움과여백", "관점전환"],
+    stage: 2,
   },
   library: {
     id: "library",
@@ -84,6 +94,8 @@ export const SPOTS: Record<SpotId, Spot> = {
     forkReason: "누군가 먼저 남긴 흔적을 만나고 싶다면, 이 길로.",
     transitAction: "걷는 동안, 땅에 남은 다른 사람의 발자국을 하나 따라가볼까요?",
     transitThought: "나보다 먼저 이 길을 걸은 것은 누구였을까",
+    fits: ["흔적과타인", "기억과그리움"],
+    stage: 2,
   },
   waryong: {
     id: "waryong",
@@ -98,6 +110,8 @@ export const SPOTS: Record<SpotId, Spot> = {
     forkReason: "보던 자리를 바꾸고 싶다면, 이 길로.",
     transitAction: "걷는 동안, 평소보다 낮은 자세로 주변을 한 번 살펴볼까요?",
     transitThought: "내가 늘 같은 자리에서만 보고 있던 것은 무엇인가",
+    fits: ["관점전환", "흔적과타인"],
+    stage: 3,
   },
   niagara: {
     id: "niagara",
@@ -112,6 +126,8 @@ export const SPOTS: Record<SpotId, Spot> = {
     forkReason: "나이를 잠시 내려놓고 싶다면, 이 길로.",
     transitAction: "걷는 동안, 걸음의 속도를 평소보다 반 박자 늦춰볼까요?",
     transitThought: "나는 무엇을 그렇게 서두르고 있었나",
+    fits: ["시간과속도", "상상과기대"],
+    stage: 3,
   },
   pottery: {
     id: "pottery",
@@ -126,6 +142,8 @@ export const SPOTS: Record<SpotId, Spot> = {
     forkReason: "지금의 자신이 어떻게 빚어졌는지 보고 싶다면, 이 길로.",
     transitAction: "걷는 동안, 발밑의 흙과 돌은 어떻게 다른 감촉일까요?",
     transitThought: "나는 무엇으로 빚어지고 있는 중인가",
+    fits: ["변형과성장", "흔적과타인"],
+    stage: 3,
   },
   alo: {
     id: "alo",
@@ -140,23 +158,53 @@ export const SPOTS: Record<SpotId, Spot> = {
     forkReason: "",
     transitAction: "",
     transitThought: "",
+    fits: [],
+    stage: 3,
   },
 };
 
-// Three groups of fork options offered chapter by chapter (start-A-B-C-알로 구조).
-export const FORK_GROUPS: SpotId[][] = [
-  ["mirroreum", "cheonhyangrang", "lighthouse"],
-  ["mother", "artmuseum", "library"],
-  ["waryong", "niagara", "pottery"],
-];
+// 막(承轉結)별 후보 풀 — 코스 흐름(감각을 여는 곳 → 고민과 마주하는 곳 → 조망하는 곳)은
+// 그대로 두되, 그 안에서 어느 곳을 갈림길로 내밀지는 방문객의 성향에 따라 갈린다.
+const STAGE_POOLS: Record<1 | 2 | 3, SpotId[]> = {
+  1: ["mirroreum", "cheonhyangrang", "lighthouse"],
+  2: ["mother", "artmuseum", "library"],
+  3: ["waryong", "niagara", "pottery"],
+};
 
-export function forkOptionsForChapter(
+// 방문객의 성향(affinityTags)과 이 막 후보들의 fits가 얼마나 겹치는지로 채점해
+// 상위 2곳을 갈림길로 내민다. 겹침이 없거나 동점이면 실(thread) 텍스트로 만든
+// 안정적인(같은 방문객은 늘 같은 결과) 타이브레이커로 순서를 정해, 방문객마다
+// 다른 조합이 나오게 한다.
+export function pickForkOptions(
   chapterIndex: number,
-  visited: SpotId[]
+  affinityTags: AffinityTag[],
+  visited: SpotId[],
+  tiebreakSeed: string
 ): SpotId[] {
-  const group = FORK_GROUPS[chapterIndex] ?? FORK_GROUPS[FORK_GROUPS.length - 1];
-  const unvisited = group.filter((id) => !visited.includes(id));
-  return unvisited.length > 0 ? unvisited : group;
+  const stage = ((chapterIndex % 3) + 1) as 1 | 2 | 3;
+  const pool = STAGE_POOLS[stage].filter((id) => !visited.includes(id));
+  const candidates = pool.length > 0 ? pool : STAGE_POOLS[stage];
+
+  const scored = candidates.map((id) => {
+    const spot = SPOTS[id];
+    const score = spot.fits.filter((tag) => affinityTags.includes(tag)).length;
+    return { id, score, tiebreak: Math.abs(hashCode(tiebreakSeed + id)) };
+  });
+  scored.sort((a, b) => b.score - a.score || a.tiebreak - b.tiebreak);
+
+  return scored.slice(0, 2).map((s) => s.id);
+}
+
+// 실(thread)을 만들 API 호출이 실패했을 때 쓰는 대체 성향 — introText/boardPhrase를
+// 씨앗으로 안정적으로(같은 입력엔 같은 결과) 두 개를 고른다.
+export function generateAffinityTags(
+  introText: string,
+  boardPhrase?: string
+): AffinityTag[] {
+  const seed = boardPhrase ? `${introText}::${boardPhrase}` : introText;
+  const first = Math.abs(hashCode(seed)) % AFFINITY_TAGS.length;
+  const second = (first + 1 + (Math.abs(hashCode(seed + "2")) % (AFFINITY_TAGS.length - 1))) % AFFINITY_TAGS.length;
+  return [AFFINITY_TAGS[first], AFFINITY_TAGS[second]];
 }
 
 const THREAD_TEMPLATES = [

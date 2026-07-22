@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { AFFINITY_TAGS } from "./types";
 
 // ── Phase: thread ─────────────────────────────────────────────────────────
 // 서문 입력(나무판 문구+고민)을 읽고 여정의 실과 첫 질문을 생성한다.
@@ -16,6 +17,14 @@ export const ThreadOutputSchema = z.object({
   thread: z
     .string()
     .describe('내부용 한 줄. "~을 읽고 싶어한다" 형식. 방문객에게 노출하지 않음.'),
+  affinityTags: z
+    .array(z.enum(AFFINITY_TAGS))
+    .min(2)
+    .max(3)
+    .describe(
+      "방문객의 여정의 실과 가장 맞닿은 성향 태그 2~3개(관련도 높은 순). " +
+        "갈림길에서 어느 장소를 먼저 보여줄지 정하는 데 내부적으로 쓴다."
+    ),
   firstQuestion: z
     .string()
     .describe("길벗이 서문에서 던지는 첫 질문. 열어두는 질문형."),

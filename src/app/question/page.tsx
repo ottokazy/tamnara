@@ -7,7 +7,8 @@ import { LibrarianLine } from "@/components/ScriptChat";
 import { UnderlineInput } from "@/components/UnderlineField";
 import { useSession } from "@/lib/session-context";
 import { accentVar } from "@/components/accent";
-import { forkOptionsForChapter } from "@/lib/mock-data";
+import { pickForkOptions, SPOTS } from "@/lib/mock-data";
+import { prefetchChapterClose } from "@/lib/librarian-client";
 
 export default function FirstQuestionPage() {
   const router = useRouter();
@@ -23,7 +24,18 @@ export default function FirstQuestionPage() {
   }, [hydrated, session.firstQuestion]);
 
   const proceed = (finalAnswer: string) => {
-    const options = forkOptionsForChapter(0, session.path);
+    const options = pickForkOptions(0, session.affinityTags, session.path, session.thread);
+    // forks 페이지가 뜨기 전에 미리 요청을 시작해 체감 대기 시간을 줄인다.
+    prefetchChapterClose("0", {
+      thread: session.thread,
+      spotName: null,
+      question: session.firstQuestion,
+      answer: finalAnswer,
+      forkOptions: options.map((id) => {
+        const spot = SPOTS[id];
+        return { spotId: id, name: spot.name, reading: spot.reading, voice: spot.voice };
+      }),
+    });
     update({
       firstAnswer: finalAnswer,
       activeForkOptions: options,

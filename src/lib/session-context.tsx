@@ -19,6 +19,7 @@ function emptySession(): SessionState {
     profile: { ageBand: "", gender: "" },
     introText: "",
     thread: "",
+    affinityTags: [],
     firstQuestion: "",
     firstAnswer: "",
     path: [],

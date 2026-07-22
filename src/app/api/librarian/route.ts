@@ -10,6 +10,20 @@ import {
   BookOutputSchema,
 } from "@/lib/librarian-schemas";
 
+// AFFINITY_TAGS(성향 어휘) 각각이 무엇을 뜻하는지 모델에게 설명하는 짧은 풀이.
+// 장소 고르기(pickForkOptions)가 이 태그로 채점하므로, 모델이 정확히 분류해야 한다.
+const AFFINITY_GLOSS: Record<string, string> = {
+  자기응시: "반복되는 자신, 정체성을 들여다보고 싶음",
+  감각과소리: "듣는 것, 감각으로 알아차리는 것에 마음이 감",
+  상상과기대: "아직 오지 않은 것, 앞일을 그려보고 싶음",
+  기억과그리움: "지나온 시절, 두고 온 사람이나 장면이 떠오름",
+  비움과여백: "채우기보다 내려놓고 여백을 두고 싶음",
+  흔적과타인: "나보다 먼저 있던 것, 타인의 자취에 마음이 감",
+  관점전환: "보던 자리·시각을 한 번 바꿔보고 싶음",
+  시간과속도: "나이·속도·서두름에 대한 감각",
+  변형과성장: "지금의 내가 어떻게 빚어져 왔는지 궁금함",
+};
+
 type ImageMimeType = "image/jpeg" | "image/png" | "image/gif" | "image/webp";
 
 function normalizeImageMimeType(mimeType: string | null): ImageMimeType {
@@ -62,11 +76,20 @@ export async function POST(request: Request) {
   try {
     switch (input.phase) {
       case "thread": {
+        const affinityGlossText = Object.entries(AFFINITY_GLOSS)
+          .map(([tag, gloss]) => `- ${tag}: ${gloss}`)
+          .join("\n");
+
         const promptText = [
           `나무판 문구: "${input.boardPhrase}"`,
           `연령대: ${input.ageBand} / 성별: ${input.gender}`,
           `방문객이 적은 고민·읽고 싶은 것: "${input.introText}"`,
           "위 내용을 바탕으로 여정의 실과 첫 질문을 만들어주세요.",
+          "",
+          "그리고 아래 성향 어휘 중, 이 방문객의 실과 가장 맞닿는 2~3개를",
+          "관련도 높은 순으로 골라주세요(이 어휘는 방문객에게 노출되지 않고,",
+          "다음 갈림길에서 어느 장소를 먼저 보여줄지 정하는 데만 쓰입니다):",
+          affinityGlossText,
         ].join("\n");
 
         const parts: Array<
