@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#5e5e5e",
+                    "secondary-fixed-dim": "#c7c6c6",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f5f4ef",
+                    "ink-gray-art": "#4A4A48",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "tertiary-fixed": "#e6e2df",
+                    "on-tertiary-fixed-variant": "#484645",
+                    "terracotta-mother": "#9C5B3B",
+                    "on-primary-fixed-variant": "#474746",
+                    "primary-fixed": "#e5e2e1",
+                    "surface-dim": "#dbdad5",
+                    "on-error-container": "#93000a",
+                    "divider-line": "#D8D6CE",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "secondary-container": "#e1dfdf",
+                    "tertiary-container": "#1c1b1a",
+                    "coffee-alo": "#6B4E37",
+                    "inverse-on-surface": "#f2f1ec",
+                    "outline": "#747878",
+                    "outline-variant": "#c4c7c7",
+                    "lava-waryong": "#8A3A2E",
+                    "blue-lighthouse": "#2F5D8A",
+                    "mustard-mirroreum": "#B5892E",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1b1c19",
+                    "surface-variant": "#e3e3de",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#464747",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#30312e",
+                    "surface-container-highest": "#e3e3de",
+                    "paper-white": "#FFFFFF",
+                    "on-surface-variant": "#444748",
+                    "on-secondary-container": "#626262",
+                    "inverse-primary": "#c8c6c5",
+                    "surface-tint": "#5f5e5e",
+                    "water-niagara": "#3E7A7A",
+                    "vintage-paper-library": "#7A6A55",
+                    "tertiary-fixed-dim": "#cac6c4",
+                    "primary-container": "#1c1b1b",
+                    "surface-bright": "#faf9f4",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#858383",
+                    "secondary-fixed": "#e4e2e2",
+                    "on-tertiary-container": "#868382",
+                    "basalt-pottery": "#5A5048",
+                    "surface-container-high": "#e9e8e3",
+                    "on-tertiary-fixed": "#1c1b1a",
+                    "on-background": "#1b1c19",
+                    "on-secondary": "#ffffff",
+                    "primary": "#000000",
+                    "tertiary": "#000000",
+                    "surface-container": "#efeee9",
+                    "on-primary-fixed": "#1c1b1b",
+                    "surface": "#faf9f4",
+                    "green-cheonhyangrang": "#2E5A3E",
+                    "background": "#faf9f4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-margin": "24px",
+                    "inline-divider": "1px",
+                    "element-gap-sm": "16px",
+                    "element-gap-lg": "64px",
+                    "element-gap-md": "32px"
+            },
+            "fontFamily": {
+                    "button-text": ["Noto Sans KR"],
+                    "body-main": ["Noto Sans KR"],
+                    "question-text": ["Noto Sans KR"],
+                    "display-lg": ["Noto Sans KR"],
+                    "caption-muted": ["Noto Sans KR"],
+                    "english-subtitle": ["Noto Sans KR"],
+                    "display-sm": ["Noto Sans KR"]
+            },
+            "fontSize": {
+                    "button-text": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-main": ["16px", {"lineHeight": "1.7", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "question-text": ["22px", {"lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-lg": ["44px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "caption-muted": ["13px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "english-subtitle": ["12px", {"lineHeight": "16px", "letterSpacing": "0.25em", "fontWeight": "500"}],
+                    "display-sm": ["34px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #F2F1EC;
+            color: #1b1c19;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-dashed {
+            background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23D8D6CE' stroke-width='1' stroke-dasharray='8%2c 8' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+        }
+        input:focus, textarea:focus {
+            outline: none;
+        }
+        /* Page Turn Transition Simulation */
+        .page-content {
+            animation: fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen items-center overflow-x-hidden">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center px-container-margin h-16 w-full max-w-[480px] bg-surface">
+<button class="w-10 h-10 flex items-center justify-start text-primary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-display-sm text-[20px] font-bold tracking-tight text-primary">책이 되어 걷다</h1>
+<button class="w-10 h-10 flex items-center justify-end text-primary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-[480px] flex-grow px-container-margin py-element-gap-md page-content">
+<!-- Progress Spine (Growing Book Indicator) -->
+<div class="w-full h-[1px] bg-divider-line mb-element-gap-md flex items-start">
+<div class="h-[2px] bg-mustard-mirroreum w-1/4"></div>
+</div>
+<section class="mb-element-gap-lg">
+<h2 class="font-question-text text-question-text text-primary mb-2">오늘의 첫 페이지</h2>
+<p class="font-english-subtitle text-english-subtitle text-secondary uppercase tracking-[0.2em]">The First Page of Today</p>
+</section>
+<!-- Camera Capture Area -->
+<div class="mb-element-gap-md">
+<div class="w-full aspect-[4/3] custom-dashed bg-paper-white flex flex-col items-center justify-center cursor-pointer active:bg-surface-container transition-colors group">
+<span class="material-symbols-outlined text-[40px] text-divider-line group-active:text-mustard-mirroreum transition-colors mb-4" data-icon="photo_camera">photo_camera</span>
+<span class="font-body-main text-secondary text-[14px]">고른 나무판을 찍어주세요</span>
+</div>
+</div>
+<!-- Demographics Selectors -->
+<div class="space-y-element-gap-sm mb-element-gap-md">
+<!-- Age Range -->
+<div class="flex flex-wrap gap-2">
+<span class="w-full font-caption-muted text-secondary mb-1">연령대</span>
+<button class="px-4 py-2 border border-divider-line bg-paper-white font-button-text text-button-text text-secondary active:bg-mustard-mirroreum active:text-white transition-all select-pill" onclick="toggleSelect(this)">10-20대</button>
+<button class="px-4 py-2 border border-divider-line bg-paper-white font-button-text text-button-text text-secondary active:bg-mustard-mirroreum active:text-white transition-all select-pill" onclick="toggleSelect(this)">30-40대</button>
+<button class="px-4 py-2 border border-divider-line bg-paper-white font-button-text text-button-text text-secondary active:bg-mustard-mirroreum active:text-white transition-all select-pill" onclick="toggleSelect(this)">50대 이상</button>
+</div>
+<!-- Gender -->
+<div class="flex flex-wrap gap-2">
+<span class="w-full font-caption-muted text-secondary mb-1">성별 (선택사항)</span>
+<button class="px-4 py-2 border border-divider-line bg-paper-white font-button-text text-button-text text-secondary active:bg-mustard-mirroreum active:text-white transition-all select-pill" onclick="toggleSelect(this)">여성</button>
+<button class="px-4 py-2 border border-divider-line bg-paper-white font-button-text text-button-text text-secondary active:bg-mustard-mirroreum active:text-white transition-all select-pill" onclick="toggleSelect(this)">남성</button>
+<button class="px-4 py-2 border border-divider-line bg-paper-white font-button-text text-button-text text-secondary active:bg-mustard-mirroreum active:text-white transition-all select-pill" onclick="toggleSelect(this)">밝히지 않음</button>
+</div>
+</div>
+<!-- Underline Input Field -->
+<div class="mb-element-gap-lg">
+<label class="font-caption-muted text-secondary block mb-4">내면의 목소리</label>
+<textarea class="w-full bg-transparent border-t-0 border-x-0 border-b border-primary px-0 py-2 font-body-main text-body-main placeholder:text-secondary-fixed-dim resize-none focus:border-mustard-mirroreum focus:ring-0 transition-colors" placeholder="지금의 고민, 또는 오늘 읽고 싶은 것" rows="3"></textarea>
+</div>
+<!-- Action Button -->
+<div class="pb-element-gap-lg">
+<button class="w-full h-14 border border-mustard-mirroreum font-button-text text-button-text text-mustard-mirroreum active:bg-mustard-mirroreum/5 transition-colors uppercase tracking-widest">
+                다음
+            </button>
+</div>
+<!-- Whitespace Buffer -->
+<div class="h-16"></div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 flex justify-around items-center h-20 bg-surface border-t border-divider-line">
+<a class="flex flex-col items-center justify-center text-primary font-bold border-t-2 border-primary pt-2 scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="map">map</span>
+<span class="font-button-text text-[12px]">여정</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary pt-2 hover:text-terracotta-mother transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="edit_note">edit_note</span>
+<span class="font-button-text text-[12px]">기록</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary pt-2 hover:text-terracotta-mother transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="local_library">local_library</span>
+<span class="font-button-text text-[12px]">서재</span>
+</a>
+</nav>
+<script>
+        function toggleSelect(el) {
+            const group = el.parentElement;
+            const buttons = group.querySelectorAll('.select-pill');
+            
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-mustard-mirroreum', 'text-white', 'border-mustard-mirroreum');
+                btn.classList.add('bg-paper-white', 'text-secondary', 'border-divider-line');
+            });
+
+            el.classList.remove('bg-paper-white', 'text-secondary', 'border-divider-line');
+            el.classList.add('bg-mustard-mirroreum', 'text-white', 'border-mustard-mirroreum');
+        }
+
+        // Simple intersection observer for subtle fade in on scroll if needed
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('opacity-0');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.page-content > *').forEach(el => {
+            el.classList.add('transition-opacity', 'duration-700', 'ease-in-out');
+        });
+    </script>
+</body></html>

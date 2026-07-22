@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>책이 되어 걷다 - 소리를 읽다</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "secondary": "#5e5e5e",
+                "secondary-fixed-dim": "#c7c6c6",
+                "on-error": "#ffffff",
+                "surface-container-low": "#f5f4ef",
+                "ink-gray-art": "#4A4A48",
+                "primary-fixed-dim": "#c8c6c5",
+                "tertiary-fixed": "#e6e2df",
+                "on-tertiary-fixed-variant": "#484645",
+                "terracotta-mother": "#9C5B3B",
+                "on-primary-fixed-variant": "#474746",
+                "primary-fixed": "#e5e2e1",
+                "surface-dim": "#dbdad5",
+                "on-error-container": "#93000a",
+                "divider-line": "#D8D6CE",
+                "surface-container-lowest": "#ffffff",
+                "on-secondary-fixed": "#1b1c1c",
+                "secondary-container": "#e1dfdf",
+                "tertiary-container": "#1c1b1a",
+                "coffee-alo": "#6B4E37",
+                "inverse-on-surface": "#f2f1ec",
+                "outline": "#747878",
+                "outline-variant": "#c4c7c7",
+                "lava-waryong": "#8A3A2E",
+                "blue-lighthouse": "#2F5D8A",
+                "mustard-mirroreum": "#B5892E",
+                "on-primary": "#ffffff",
+                "on-surface": "#1b1c19",
+                "surface-variant": "#e3e3de",
+                "on-tertiary": "#ffffff",
+                "on-secondary-fixed-variant": "#464747",
+                "error-container": "#ffdad6",
+                "inverse-surface": "#30312e",
+                "surface-container-highest": "#e3e3de",
+                "paper-white": "#FFFFFF",
+                "on-surface-variant": "#444748",
+                "on-secondary-container": "#626262",
+                "inverse-primary": "#c8c6c5",
+                "surface-tint": "#5f5e5e",
+                "water-niagara": "#3E7A7A",
+                "vintage-paper-library": "#7A6A55",
+                "tertiary-fixed-dim": "#cac6c4",
+                "primary-container": "#1c1b1b",
+                "surface-bright": "#faf9f4",
+                "error": "#ba1a1a",
+                "on-primary-container": "#858383",
+                "secondary-fixed": "#e4e2e2",
+                "on-tertiary-container": "#868382",
+                "basalt-pottery": "#5A5048",
+                "surface-container-high": "#e9e8e3",
+                "on-tertiary-fixed": "#1c1b1a",
+                "on-background": "#1b1c19",
+                "on-secondary": "#ffffff",
+                "primary": "#000000",
+                "tertiary": "#000000",
+                "surface-container": "#efeee9",
+                "on-primary-fixed": "#1c1b1b",
+                "surface": "#faf9f4",
+                "green-cheonhyangrang": "#2E5A3E",
+                "background": "#faf9f4"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "container-margin": "24px",
+                "inline-divider": "1px",
+                "element-gap-sm": "16px",
+                "element-gap-lg": "64px",
+                "element-gap-md": "32px"
+            },
+            "fontFamily": {
+                "button-text": ["Noto Sans KR"],
+                "body-main": ["Noto Sans KR"],
+                "question-text": ["Noto Sans KR"],
+                "display-lg": ["Noto Sans KR"],
+                "caption-muted": ["Noto Sans KR"],
+                "english-subtitle": ["Noto Sans KR"],
+                "display-sm": ["Noto Sans KR"]
+            },
+            "fontSize": {
+                "button-text": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "body-main": ["16px", {"lineHeight": "1.7", "letterSpacing": "0em", "fontWeight": "400"}],
+                "question-text": ["22px", {"lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                "display-lg": ["44px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "display-lg-mobile": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "caption-muted": ["13px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "400"}],
+                "english-subtitle": ["12px", {"lineHeight": "16px", "letterSpacing": "0.25em", "fontWeight": "500"}],
+                "display-sm": ["34px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "display-sm-mobile": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F2F1EC;
+            color: #1b1c19;
+            font-family: 'Noto Sans KR', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .museum-card {
+            border: 1px solid #D8D6CE;
+            background-color: #FFFFFF;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Fade transition */
+        .fade-in {
+            animation: fadeIn 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface select-none">
+<!-- Top Navigation Anchor -->
+<header class="bg-surface border-b border-divider-line fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 flex justify-between items-center px-container-margin h-16">
+<button class="hover:bg-surface-container-low transition-colors p-2 -ml-2">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-display-sm-mobile text-display-sm-mobile tracking-tight text-primary">책이 되어 걷다</h1>
+<button class="hover:bg-surface-container-low transition-colors p-2 -mr-2">
+<span class="material-symbols-outlined text-primary">menu_book</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-32 pb-24 px-container-margin max-w-[480px] mx-auto min-h-screen flex flex-col justify-start">
+<!-- Arrival Card (Museum Reading Card Style) -->
+<article class="museum-card p-8 flex flex-col items-start fade-in">
+<!-- Category Label -->
+<span class="font-english-subtitle text-english-subtitle text-green-cheonhyangrang uppercase mb-8">
+                READING SOUND
+            </span>
+<!-- Large Typographic Title -->
+<h2 class="mb-4">
+<span class="block font-display-lg-mobile text-display-lg-mobile font-bold text-primary">소리를</span>
+<span class="block font-display-lg-mobile text-display-lg-mobile font-light text-primary">읽다</span>
+</h2>
+<!-- Editorial Quote -->
+<p class="font-body-main text-body-main italic text-secondary italic mb-10">
+                “소리는 귀로 읽는 책이다”
+            </p>
+<!-- Thin Divider -->
+<div class="w-12 h-inline-divider bg-divider-line mb-10"></div>
+<!-- Mission Section -->
+<section class="space-y-4">
+<span class="font-english-subtitle text-english-subtitle text-secondary tracking-widest block">
+                    MISSION
+                </span>
+<p class="font-question-text text-question-text text-primary leading-tight">
+                    책 한 권을 뽑아<br/>아무 페이지나 읽어보라
+                </p>
+</section>
+<!-- Content Visual Spacer (Whitespace) -->
+<div class="h-16 w-full"></div>
+<!-- Interaction Button -->
+<button class="w-full border border-green-cheonhyangrang py-4 font-button-text text-button-text text-green-cheonhyangrang uppercase tracking-widest hover:bg-green-cheonhyangrang/5 transition-colors duration-300">
+                시작하기
+            </button>
+</article>
+<!-- Aesthetic Atmosphere Image -->
+<div class="mt-element-gap-md fade-in" style="animation-delay: 0.4s">
+<div class="w-full h-64 grayscale opacity-80" data-alt="A serene, minimalist photograph of an old library corner in a museum with soft natural light. High-key aesthetic, cream ivory walls, and dark wooden shelves holding rows of uniform books. The image is captured from a contemplative low angle, emphasizing the quiet, intellectual atmosphere of a sanctuary of knowledge. No people are visible, focusing on the tactile quality of paper and dust motes dancing in the light." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAKyjHEKlpSpUqh9LN9dGp7gZky41mOwzuTnXz2uy9xlMkeFg9AAhTVKjJjELrI_Gsejlsc8HqI58iCIMLXLJsvSQ37JLG6DT28Yc3N804kNQEfEMz0hJhVOUCzBu_hWBRFJi5zAc3RAEm_pMVxIc7q3NesRkFD5sfjwvoj40NtV-CDsr66-VL5P-Ea6vpKkRa_SBEYv1GgJajQJhL9Tp2TV2VFucLuiBW_cgODKNl_RCWCzd-VdfVoBv8O3dUfV3AgcMUOUUqV7sqa')">
+</div>
+<p class="mt-4 font-caption-muted text-caption-muted text-secondary italic text-right">
+                침묵의 도서관, 11:34 AM
+            </p>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 flex justify-around items-center h-20 bg-surface border-t border-divider-line">
+<!-- Active Tab: 여정 (Journey) -->
+<a class="flex flex-col items-center justify-center text-primary font-bold border-t-2 border-primary pt-2 w-1/3 h-full transition-transform duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>
+<span class="font-button-text text-button-text mt-1">여정</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary pt-2 w-1/3 h-full hover:text-terracotta-mother transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="font-button-text text-button-text mt-1">기록</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary pt-2 w-1/3 h-full hover:text-terracotta-mother transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined">local_library</span>
+<span class="font-button-text text-button-text mt-1">서재</span>
+</a>
+</nav>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('click', function(e) {
+                // Subtle interaction logic if needed
+            });
+        });
+        
+        // Simple scroll effect for the header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('bg-white/90', 'backdrop-blur-sm');
+            } else {
+                header.classList.remove('bg-white/90', 'backdrop-blur-sm');
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>책이 되어 걷다 - Walk, Become a Book</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#5e5e5e",
+                    "secondary-fixed-dim": "#c7c6c6",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f5f4ef",
+                    "ink-gray-art": "#4A4A48",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "tertiary-fixed": "#e6e2df",
+                    "on-tertiary-fixed-variant": "#484645",
+                    "terracotta-mother": "#9C5B3B",
+                    "on-primary-fixed-variant": "#474746",
+                    "primary-fixed": "#e5e2e1",
+                    "surface-dim": "#dbdad5",
+                    "on-error-container": "#93000a",
+                    "divider-line": "#D8D6CE",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "secondary-container": "#e1dfdf",
+                    "tertiary-container": "#1c1b1a",
+                    "coffee-alo": "#6B4E37",
+                    "inverse-on-surface": "#f2f1ec",
+                    "outline": "#747878",
+                    "outline-variant": "#c4c7c7",
+                    "lava-waryong": "#8A3A2E",
+                    "blue-lighthouse": "#2F5D8A",
+                    "mustard-mirroreum": "#B5892E",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1b1c19",
+                    "surface-variant": "#e3e3de",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#464747",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#30312e",
+                    "surface-container-highest": "#e3e3de",
+                    "paper-white": "#FFFFFF",
+                    "on-surface-variant": "#444748",
+                    "on-secondary-container": "#626262",
+                    "inverse-primary": "#c8c6c5",
+                    "surface-tint": "#5f5e5e",
+                    "water-niagara": "#3E7A7A",
+                    "vintage-paper-library": "#7A6A55",
+                    "tertiary-fixed-dim": "#cac6c4",
+                    "primary-container": "#1c1b1b",
+                    "surface-bright": "#faf9f4",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#858383",
+                    "secondary-fixed": "#e4e2e2",
+                    "on-tertiary-container": "#868382",
+                    "basalt-pottery": "#5A5048",
+                    "surface-container-high": "#e9e8e3",
+                    "on-tertiary-fixed": "#1c1b1a",
+                    "on-background": "#1b1c19",
+                    "on-secondary": "#ffffff",
+                    "primary": "#000000",
+                    "tertiary": "#000000",
+                    "surface-container": "#efeee9",
+                    "on-primary-fixed": "#1c1b1b",
+                    "surface": "#faf9f4",
+                    "green-cheonhyangrang": "#2E5A3E",
+                    "background": "#faf9f4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-margin": "24px",
+                    "inline-divider": "1px",
+                    "element-gap-sm": "16px",
+                    "element-gap-lg": "64px",
+                    "element-gap-md": "32px"
+            },
+            "fontFamily": {
+                    "notoSans": ["Noto Sans KR", "sans-serif"],
+                    "button-text": ["Noto Sans KR"],
+                    "body-main": ["Noto Sans KR"],
+                    "question-text": ["Noto Sans KR"],
+                    "display-lg": ["Noto Sans KR"],
+                    "caption-muted": ["Noto Sans KR"],
+                    "english-subtitle": ["Noto Sans KR"],
+                    "display-sm": ["Noto Sans KR"]
+            },
+            "fontSize": {
+                    "button-text": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-main": ["16px", {"lineHeight": "1.7", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "question-text": ["22px", {"lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-lg": ["44px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "caption-muted": ["13px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "english-subtitle": ["12px", {"lineHeight": "16px", "letterSpacing": "0.25em", "fontWeight": "500"}],
+                    "display-sm": ["34px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-sm-mobile": ["28px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F2F1EC;
+            color: #1b1c19;
+            font-family: 'Noto Sans KR', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        /* Custom smooth transition for button */
+        .btn-start:active {
+            background-color: rgba(46, 90, 62, 0.05);
+            transform: scale(0.98);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen max-w-[480px] mx-auto bg-surface overflow-hidden">
+<!-- Top Progress Bar (Editorial Spine Concept) -->
+<div class="fixed top-0 left-0 w-full h-[2px] bg-divider-line z-50">
+<div class="h-full bg-green-cheonhyangrang w-1/12"></div>
+</div>
+<!-- Main Canvas -->
+<main class="flex-grow flex flex-col px-container-margin pt-element-gap-lg pb-element-gap-lg relative">
+<!-- Header Section -->
+<header class="mb-element-gap-md">
+<span class="font-english-subtitle text-english-subtitle text-secondary mb-2 block uppercase">
+                WALK, BECOME A BOOK
+            </span>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tighter break-keep leading-tight">
+                책이 되어 걷다
+            </h1>
+<p class="font-body-main text-body-main text-secondary mt-6 max-w-[280px] break-keep opacity-80">
+                당신의 발걸음이 문장이 되고,<br/>풍경은 한 권의 서사가 됩니다.
+            </p>
+</header>
+<!-- Aesthetic Empty Space (Vastness for Contemplation) -->
+<div class="flex-grow flex items-center justify-center">
+<!-- Subtle abstract decorative element (museum card style) -->
+<div class="w-[1px] h-32 bg-divider-line opacity-50"></div>
+</div>
+<!-- Call to Action -->
+<footer class="mt-auto">
+<div class="mb-element-gap-sm flex flex-col gap-2">
+<span class="font-caption-muted text-caption-muted text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">auto_stories</span>
+                    새로운 여정을 시작할 준비가 되셨나요?
+                </span>
+</div>
+<button class="btn-start w-full py-5 border border-green-cheonhyangrang text-green-cheonhyangrang font-button-text text-button-text tracking-widest transition-all duration-200 bg-transparent flex justify-between items-center px-8" onclick="handleStart()">
+<span>시작하기</span>
+<span class="material-symbols-outlined">north_east</span>
+</button>
+</footer>
+</main>
+<!-- Background Atmospheric Texture (Soft Paper Grain Simulation) -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03]" style="background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');"></div>
+<!-- Shared Navigation Components (Supressed as per Transactional/Opening Screen Logic) -->
+<!-- The TopAppBar and BottomNavBar are defined in JSON but suppressed here to prioritize the "Opening Screen" canvas as instructed in the "Semantic Shell Mandate". -->
+<script>
+        function handleStart() {
+            // Simple visual feedback for interaction
+            const btn = document.querySelector('.btn-start');
+            btn.innerHTML = '<span class="flex items-center gap-3">불러오는 중... <span class="w-1 h-1 bg-green-cheonhyangrang animate-ping"></span></span>';
+            
+            setTimeout(() => {
+                console.log("Navigating to journey selection...");
+                // In a real app, this would trigger navigation
+            }, 1000);
+        }
+
+        // Entrance animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('header > *, footer, main > div');
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(10px)';
+                el.style.transition = `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s`;
+                
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100);
+            });
+        });
+    </script>
+</body></html>

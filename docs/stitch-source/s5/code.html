@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #F2F1EC;
+            color: #1b1c19;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Dotted Path Animation */
+        .path-stroke {
+            stroke-dasharray: 4, 8;
+            animation: dashmove 20s linear infinite;
+        }
+        @keyframes dashmove {
+            to {
+                stroke-dashoffset: -100;
+            }
+        }
+        .fade-in {
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#5e5e5e",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "divider-line": "#D8D6CE",
+                        "terracotta-mother": "#9C5B3B",
+                        "green-cheonhyangrang": "#2E5A3E",
+                        "primary": "#000000",
+                        "surface": "#faf9f4",
+                        "background": "#f2f1ec",
+                        "paper-white": "#FFFFFF"
+                    },
+                    "spacing": {
+                        "container-margin": "24px",
+                        "element-gap-sm": "16px",
+                        "element-gap-md": "32px",
+                        "element-gap-lg": "64px"
+                    },
+                    "fontFamily": {
+                        "button-text": ["Noto Sans KR"],
+                        "body-main": ["Noto Sans KR"],
+                        "question-text": ["Noto Sans KR"],
+                        "display-sm": ["Noto Sans KR"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen flex flex-col items-center overflow-x-hidden">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center px-container-margin h-16 w-full max-w-[480px] mx-auto bg-background border-b border-divider-line fixed top-0 z-50">
+<button class="p-2 hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-display-sm-mobile text-[18px] font-bold tracking-tight text-primary">책이 되어 걷다</h1>
+<button class="p-2 hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-primary">menu_book</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-[480px] px-container-margin pt-32 pb-40 flex-grow flex flex-col">
+<!-- Progress Spine Concept -->
+<div class="fixed top-16 left-1/2 -translate-x-1/2 w-full max-w-[480px] h-1 flex gap-1 px-container-margin">
+<div class="h-full bg-green-cheonhyangrang flex-grow"></div>
+<div class="h-full bg-divider-line flex-grow"></div>
+<div class="h-full bg-divider-line flex-grow"></div>
+<div class="h-full bg-divider-line flex-grow"></div>
+</div>
+<!-- Narrative Section -->
+<section class="fade-in">
+<span class="text-green-cheonhyangrang text-[12px] font-medium tracking-[0.2em] uppercase mb-4 block">Chapter III. Listening</span>
+<h2 class="text-[24px] leading-[1.6] text-primary font-normal mb-element-gap-lg">
+                걷는 동안,<br/>
+                스쳐가는 소리 중<br/>
+<span class="text-green-cheonhyangrang font-bold">가장 작은 소리</span> 하나를<br/>
+                찾아보세요.
+            </h2>
+</section>
+<!-- Abstract Path Visualization -->
+<div class="relative w-full h-48 mb-element-gap-lg flex items-center justify-center">
+<svg class="w-full h-full" fill="none" viewbox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+<path class="path-stroke" d="M10 180C50 160 100 190 150 150C200 110 250 140 300 80C350 20 380 40 390 10" stroke="#D8D6CE" stroke-width="1.5"></path>
+<circle cx="10" cy="180" fill="#2E5A3E" r="4"></circle>
+<circle cx="390" cy="10" fill="white" r="4" stroke="#2E5A3E" stroke-width="1.5"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+<span class="material-symbols-outlined text-[120px] text-green-cheonhyangrang">spatial_audio_off</span>
+</div>
+</div>
+<!-- Contemplative Prompt -->
+<section class="mt-auto fade-in" style="animation-delay: 0.5s;">
+<div class="border-l-2 border-green-cheonhyangrang pl-6 py-2">
+<p class="text-secondary text-[15px] italic leading-relaxed">
+                    생각하며 걸어요:<br/>
+<span class="text-primary not-italic font-medium">나는 무엇을 기다리고 있었나</span>
+</p>
+</div>
+</section>
+<!-- Primary Action -->
+<section class="mt-element-gap-lg fade-in" style="animation-delay: 0.8s;">
+<button class="w-full h-16 border border-green-cheonhyangrang text-green-cheonhyangrang text-[16px] font-medium tracking-widest transition-all active:scale-95 flex items-center justify-center gap-2" onclick="this.classList.add('bg-green-cheonhyangrang/10')">
+                도착했어요
+                <span class="material-symbols-outlined">north_east</span>
+</button>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 flex justify-around items-center h-20 bg-background border-t border-divider-line">
+<!-- Tab: Journey (Active) -->
+<a class="flex flex-col items-center justify-center text-primary font-bold border-t-2 border-primary pt-2 scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-weight="fill">map</span>
+<span class="text-[11px] mt-1">여정</span>
+</a>
+<!-- Tab: Record -->
+<a class="flex flex-col items-center justify-center text-secondary pt-2 hover:text-green-cheonhyangrang transition-colors" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="text-[11px] mt-1">기록</span>
+</a>
+<!-- Tab: Library -->
+<a class="flex flex-col items-center justify-center text-secondary pt-2 hover:text-green-cheonhyangrang transition-colors" href="#">
+<span class="material-symbols-outlined">local_library</span>
+<span class="text-[11px] mt-1">서재</span>
+</a>
+</nav>
+<script>
+        // Simple Interaction for the "Arrived" button
+        document.querySelector('button').addEventListener('click', function() {
+            console.log('Journey point reached.');
+            // Add haptic feedback or transition logic here if desired
+        });
+    </script>
+</body></html>

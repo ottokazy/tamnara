@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-noto-kr), "Noto Sans KR", sans-serif;
+
+  /* Base surfaces */
+  --color-paper: #f2f1ec;
+  --color-ink: #1a1a1a;
+  --color-muted: #6b6b6b;
+  --color-line: #d8d6ce;
+  --color-card: #ffffff;
+
+  /* Place accent colors */
+  --color-mirroreum: #b5892e;
+  --color-cheonhyangrang: #2e5a3e;
+  --color-lighthouse: #2f5d8a;
+  --color-mother: #9c5b3b;
+  --color-alo: #6b4e37;
+  --color-artmuseum: #4a4a48;
+  --color-library: #7a6a55;
+  --color-waryong: #8a3a2e;
+  --color-niagara: #3e7a7a;
+  --color-pottery: #5a5048;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  /* Typography scale — see docs/stitch-source/the_editorial_wayfarer/DESIGN.md */
+  .type-display-lg {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .type-display-sm {
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .type-subtitle-en {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+  .type-question {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+  .type-body {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+  .type-caption {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .type-button {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+  }
+}
