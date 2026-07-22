@@ -6,6 +6,7 @@ import {
   LibrarianRequestSchema,
   ThreadOutputSchema,
   DialogueOpenOutputSchema,
+  ChapterCloseGenerationSchema,
   BookOutputSchema,
 } from "@/lib/librarian-schemas";
 
@@ -105,6 +106,65 @@ export async function POST(request: Request) {
           DialogueOpenOutputSchema
         );
         return NextResponse.json(output);
+      }
+
+      case "chapterClose": {
+        const contextLines = input.spotName
+          ? [
+              `장소: ${input.spotName}`,
+              `길벗의 질문: "${input.question}"`,
+              input.answer.trim().length === 0
+                ? "방문객은 이 질문에 답하지 않고 그냥 지나갔습니다(침묵)."
+                : `방문객의 답: "${input.answer}"`,
+            ]
+          : [
+              // 아직 스팟을 방문하기 전, 서문에서의 첫 질문에 대한 답변.
+              `길벗의 첫 질문: "${input.question}"`,
+              input.answer.trim().length === 0
+                ? "방문객은 이 질문에 답하지 않고 그냥 지나갔습니다(침묵)."
+                : `방문객의 답: "${input.answer}"`,
+            ];
+
+        const forkOptionsText = input.forkOptions
+          .map(
+            (f, i) => `${i + 1}. ${f.name}(${f.reading}) — "${f.voice}"`
+          )
+          .join("\n");
+
+        const promptText = [
+          `여정의 실(내부용, 노출 금지): "${input.thread}"`,
+          ...contextLines,
+          "",
+          "1) 위 답을(또는 침묵을) 받아주는 한 문장에, 다음 갈림길을 향한 초대를",
+          "자연스럽게 이어 붙여 한 흐름의 문장으로 만들어주세요(1~2문장).",
+          "받아주는 부분과 초대하는 부분이 따로 노는 두 문단처럼 보이면 안 됩니다.",
+          "",
+          `2) 다음 갈림길 후보 ${input.forkOptions.length}곳입니다(번호 순서):`,
+          forkOptionsText,
+          `각 후보마다, 여정의 실과 방금 답을 그 장소의 실제 특징과 조용히 엮어`,
+          "왜 다음 걸음으로 어울릴 수 있는지 한 줄씩 새로 써서, 위 번호와 같은",
+          `순서로 정확히 ${input.forkOptions.length}개를 배열로 주세요.`,
+          "",
+          "두 경우 모두: 해석하거나 조언하거나 마음 상태를 진단하지 마세요",
+          "(예: '~하고 싶으신가봐요', '~한 마음이군요', '~하시는군요' 금지).",
+          "방문객의 말이나 그 장소의 특징을 은근히 엮을 뿐, 방문객의 속마음을",
+          "안다고 단정하지 않습니다.",
+        ].join("\n");
+
+        const generation = await generateStructured(
+          FLASH_MODEL,
+          promptText,
+          ChapterCloseGenerationSchema
+        );
+        // spotId는 모델이 지어내지 않도록, 원래 요청한 순서 그대로 우리가 직접 붙인다.
+        const forkReasons = input.forkOptions.map((opt, i) => ({
+          spotId: opt.spotId,
+          reason: generation.forkReasons[i] ?? `${opt.name} — ${opt.voice}`,
+        }));
+        return NextResponse.json({
+          acknowledgment: generation.acknowledgment,
+          forkReasons,
+        });
       }
 
       case "book": {

@@ -42,6 +42,63 @@ export const DialogueOpenOutputSchema = z.object({
     ),
 });
 
+// ── Phase: chapterClose ──────────────────────────────────────────────────
+// 방문객이 답변(또는 침묵)을 남긴 직후, 다음 갈림길 카드로 이어지는 한 흐름의
+// 문장 + 그 갈림길 각각의 이유를 새로 쓴다. 여정의 실과 방금 답을 조용히
+// 엮어 "길 안내"를 하되, 진단문을 입 밖에 내지는 않는다.
+const ForkOptionInputSchema = z.object({
+  spotId: z.string(),
+  name: z.string(),
+  reading: z.string(),
+  voice: z.string(),
+});
+
+export const ChapterCloseRequestSchema = z.object({
+  phase: z.literal("chapterClose"),
+  thread: z.string(),
+  spotName: z.string().nullable(), // null이면 아직 스팟 방문 전(서문 직후)
+  question: z.string(),
+  answer: z.string(), // 빈 문자열이면 침묵(그냥 지나가기)
+  forkOptions: z.array(ForkOptionInputSchema),
+});
+
+// 모델이 실제로 만들어내는 것: spotId는 모델이 지어내면 원본과 어긋날 수 있으므로
+// 아예 맡기지 않는다 — forkOptions와 같은 순서의 이유 배열만 받는다.
+export const ChapterCloseGenerationSchema = z.object({
+  acknowledgment: z
+    .string()
+    .describe(
+      "답변을 받아주고 자연스럽게 다음 갈림길로 이어지는 한두 문장. " +
+        "방문객 마음 상태를 해석·진단하지 않는다(예: '~하고 싶으신가봐요' 금지). " +
+        "방문객의 말을 되받아쓰고, 그 흐름 그대로 다음 걸음을 향한 초대로 마무리한다."
+    ),
+  forkReasons: z
+    .array(
+      z
+        .string()
+        .describe(
+          "이 장소가 왜 다음 걸음으로 어울릴 수 있는지, 여정의 실과 방금 답을 " +
+            "조용히 엮어 쓴 한 줄. 방문객의 마음을 안다고 단정하는 진단문은 " +
+            "쓰지 않는다(예: '~하시는군요', '~한 마음이시네요' 금지). " +
+            "그 장소의 실제 특징도 함께 담는다."
+        )
+    )
+    .describe(
+      "forkOptions와 정확히 같은 개수, 같은 순서로 하나씩. spotId는 쓰지 않는다."
+    ),
+});
+
+// 클라이언트에 실제로 내려주는 것: spotId는 서버가 forkOptions 순서로 직접 붙인다.
+export const ChapterCloseOutputSchema = z.object({
+  acknowledgment: z.string(),
+  forkReasons: z.array(
+    z.object({
+      spotId: z.string(),
+      reason: z.string(),
+    })
+  ),
+});
+
 // ── Phase: book ───────────────────────────────────────────────────────────
 // 여정 전체를 엮어 제목과 짧은 서문/에필로그 문장을 짓는다.
 // 방문객이 직접 쓴 답변은 고쳐 쓰지 않으므로 이 단계의 출력에는 포함하지 않는다.
@@ -71,6 +128,7 @@ export const BookOutputSchema = z.object({
 export const LibrarianRequestSchema = z.discriminatedUnion("phase", [
   ThreadRequestSchema,
   DialogueOpenRequestSchema,
+  ChapterCloseRequestSchema,
   BookRequestSchema,
 ]);
 

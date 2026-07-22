@@ -3,6 +3,7 @@
 import {
   ThreadOutputSchema,
   DialogueOpenOutputSchema,
+  ChapterCloseOutputSchema,
   BookOutputSchema,
   type LibrarianRequest,
 } from "./librarian-schemas";
@@ -40,6 +41,13 @@ export async function fetchDialogueOpen(
 ): Promise<z.infer<typeof DialogueOpenOutputSchema>> {
   const raw = await callLibrarian({ phase: "dialogueOpen", ...args });
   return DialogueOpenOutputSchema.parse(raw);
+}
+
+export async function fetchChapterClose(
+  args: Omit<Extract<LibrarianRequest, { phase: "chapterClose" }>, "phase">
+): Promise<z.infer<typeof ChapterCloseOutputSchema>> {
+  const raw = await callLibrarian({ phase: "chapterClose", ...args });
+  return ChapterCloseOutputSchema.parse(raw);
 }
 
 export async function fetchBook(

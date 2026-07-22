@@ -5,9 +5,11 @@ import { accentVar } from "./accent";
 
 export default function ForkCard({
   spot,
+  reason,
   onSelect,
 }: {
   spot: Spot;
+  reason?: string; // 있으면 여정의 실에 맞춰 새로 쓴 이유, 없으면 고정 문구
   onSelect: () => void;
 }) {
   const c = accentVar(spot.accent);
@@ -21,7 +23,7 @@ export default function ForkCard({
         {spot.readingEn}
       </div>
       <div className="text-lg font-bold text-ink">{spot.name}</div>
-      <p className="type-caption mt-2 text-muted">{spot.forkReason}</p>
+      <p className="type-caption mt-2 text-muted">{reason ?? spot.forkReason}</p>
       <p className="type-caption mt-3 text-muted">도보 {spot.walkMin}분</p>
     </button>
   );
