@@ -50,7 +50,7 @@ export default function TransitPage() {
         <div className="mb-16 flex items-center justify-center">
           <svg width="100%" height="120" viewBox="0 0 400 120" fill="none">
             <path
-              d="M10 100C60 90 100 80 140 75C180 68 230 55 270 45C310 35 350 20 390 10"
+              d="M10 100C49 118 101 57 140 75C179 93 231 27 270 45C306 55 354 0 390 10"
               stroke="var(--color-line)"
               strokeWidth="1.5"
             />
